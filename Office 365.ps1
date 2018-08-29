@@ -52,7 +52,7 @@ Set-Mailbox -Identity "John Smith" -ForwardingAddress "sara@contoso.com" -Delive
 #Azure 
 $msolcred = get-credential
 connect-msolservice -credential $msolcred
-Set-MsolUserPassword -userPrincipalName email@domain.com -NewPassword "Automatous12" -ForceChangePassword $false
+Set-MsolUserPassword -userPrincipalName email@domain.com -NewPassword "YourPassword" -ForceChangePassword $false
 Get-MsolUser -All | ft displayname , Licenses | Out-File c:\users.csv
 Get-MSOLUser | Set-MsolUser -PasswordNeverExpires $true
 
