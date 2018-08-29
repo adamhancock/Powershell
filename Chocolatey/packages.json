@@ -1,0 +1,9 @@
+
+    [
+        { "name": "GoogleChrome", "source": "chocolatey" } ,
+        { "name": "adobereader-update", "source": "chocolatey" },
+        {"name": "7zip", "source": "chocolatey"},
+        {"name": "vlc", "source": "chocolatey"},
+        {"name": "treesizefree", "source": "chocolatey", "prompt": true},
+        {"name": "audacity", "source": "chocolatey", "prompt": true}
+    ]
