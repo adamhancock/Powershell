@@ -1,3 +1,7 @@
+param (
+    [Parameter(Mandatory=$true)][string]$install
+ )
+
 ## Installing Modules
 
 $modules = Get-Content -Raw -Path modules.json | ConvertFrom-Json
@@ -18,9 +22,9 @@ if (-not (Get-Module -Name $_.name -EA SilentlyContinue )) {
 
 ## Installing Packages
 
-  $packages = Get-Content -Raw -Path packages.json | ConvertFrom-Json
+  $packagesArray = Get-Content -Raw -Path $install | ConvertFrom-Json
 
-  $packages | ForEach-Object -Process {
+  $packagesArray | ForEach-Object -Process {
         if (-not (Get-Package $_.name -ErrorAction SilentlyContinue)){
             if ($_.prompt){
                 $message = "Install " + $_."name" + " from " + $_."source" + "? Y/N"
