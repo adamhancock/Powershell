@@ -1,8 +1,10 @@
+
+## Parameters
 param (
     [Parameter(Mandatory=$true)][string]$install
  )
 
-## Installing Modules
+## Installing PS Modules in modules.json 
 
 $modules = Get-Content -Raw -Path modules.json | ConvertFrom-Json
 
@@ -22,22 +24,28 @@ if (-not (Get-Module -Name $_.name -EA SilentlyContinue )) {
 
 ## Installing Packages
 
+    # Import json file set with -install parameter. 
   $packagesArray = Get-Content -Raw -Path $install | ConvertFrom-Json
 
   $packagesArray | ForEach-Object -Process {
+      ## Loop through the packages json file
         if (-not (Get-Package $_.name -ErrorAction SilentlyContinue)){
             if ($_.prompt){
+                ## Package has prompt set, prompt user to install? 
                 $message = "Install " + $_."name" + " from " + $_."source" + "? Y/N"
                 $install = Read-Host -Prompt $message
                     if($install -eq "y"){
                         write-host "Installing "$_.name"..."
+                        ## User said yes, Go Install Package from Source. 
                         Install-Package -Name $_.name -ProviderName $_.source 
                     }
             }else{
         write-host "Installing "$_.name"..."
+        # No prompt required, just install it. 
         Install-Package -Name $_.name -ProviderName $_.source 
     }
     }else{
+        # Package is already installed. 
         write-host $_.name "is already installed." 
     }
   }
