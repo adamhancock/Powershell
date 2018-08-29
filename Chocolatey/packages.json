@@ -4,6 +4,11 @@
         { "name": "adobereader-update", "source": "chocolatey" },
         {"name": "7zip", "source": "chocolatey"},
         {"name": "vlc", "source": "chocolatey"},
+        {"name": "javaruntime", "source": "chocolatey"},
+        {"name": "flashplayerplugin", "source": "chocolatey"},
+        {"name": "silverlight", "source": "chocolatey"},
+        {"name": "sysinternals", "source": "chocolatey"},
+        {"name": "notepadplusplus.install", "source": "chocolatey", "prompt":true},
         {"name": "treesizefree", "source": "chocolatey", "prompt": true},
         {"name": "audacity", "source": "chocolatey", "prompt": true}
     ]
