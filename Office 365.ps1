@@ -68,3 +68,5 @@ Set-Mailbox -Identity email@domain.co.uk -Type “Shared” -ProhibitSendReceive
 # Set to regular mailbox
 Set-Mailbox -Identity <alias> -Type "Regular" -ProhibitSendReceiveQuota 5GB -ProhibitSendQuota 4.75G
 B -IssueWarningQuota 4.5GB
+
+# 2fa enable 
