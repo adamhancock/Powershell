@@ -38,7 +38,7 @@ foreach ($user in Get-ADUser -Filter * -Properties Name, userPrincipalName) {
         $perc = [math]::Round($i / $total.Lines * 100)
         
         $name = $user.Name 
-
+        
         Write-Progress -Activity "Testing $name - $perc%" -PercentComplete $perc
         # write-host $user.userPrincipalName - $user.LockedOut   
         Test-ADCredential -username $user.userPrincipalName  -password $password 
