@@ -28,5 +28,5 @@ function Test-ADCredential {
 #####################################
 
 $password = "Stoba123"
-write-host $password
+write-host Password: $password
 Get-ADUser -Filter * -Properties userPrincipalName | foreach { Test-ADCredential -username $_.userPrincipalName -password $password   }
