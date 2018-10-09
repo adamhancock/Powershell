@@ -23,7 +23,7 @@ function Test-ADCredential {
         }
     }
 }
-
+Write-Output "Starting Log..." | Out-File users.txt
 Write-Host "Downloading Password List..."
 Invoke-WebRequest -Uri "https://ingeniotech.blob.core.windows.net/download/passwordlist.txt" -OutFile passwords.txt
 $total = Get-Content passwords.txt| Measure-Object –Line
@@ -34,7 +34,7 @@ foreach ($user in Get-ADUser -Filter * -Properties Name, userPrincipalName) {
     $i = 1;
     foreach ($password in Get-Content .\passwords.txt) {
      
-        write-host $i '/' $total.Lines
+        write-host $user.name - $i '/' $total.Lines
         # write-host $user.userPrincipalName - $user.LockedOut   
         Test-ADCredential -username $user.userPrincipalName  -password $password 
             
