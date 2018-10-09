@@ -1,3 +1,5 @@
+## Adam Hancock
+
 Import-Module ActiveDirectory  
 
 function Test-ADCredential {
