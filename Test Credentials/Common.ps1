@@ -18,7 +18,7 @@ function Test-ADCredential {
         $DS = New-Object System.DirectoryServices.AccountManagement.PrincipalContext('domain')
         $result = $DS.ValidateCredentials($UserName, $Password)
         if ($result) {
-            write-host Password: $Password - $UserName
+            write-host -ForegroundColor Red Password: $Password - $UserName
         }
     }
 }
@@ -26,6 +26,7 @@ function Test-ADCredential {
 Write-Host "Downloading Password List..."
 Invoke-WebRequest -Uri "https://ingeniotech.blob.core.windows.net/download/passwordlist.txt" -OutFile passwords.txt
 
+Write-Host "Testing Passwords..."
 
 foreach ($password in Get-Content .\passwords.txt) {
     if ($password -match $regex) {
