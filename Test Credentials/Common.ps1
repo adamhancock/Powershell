@@ -30,7 +30,7 @@ $total = Get-Content passwords.txt| Measure-Object –Line
 Write-Host "Testing Passwords..."
 
 foreach ($user in Get-ADUser -Filter * -Properties Name, userPrincipalName) {
-    write-host $user.Name -ForegroundColor Green
+    # write-host $user.Name -ForegroundColor Green
     $i = 1;
     foreach ($password in Get-Content .\passwords.txt) {
      
