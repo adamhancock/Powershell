@@ -16,16 +16,19 @@ function Test-ADCredential {
         $DS = New-Object System.DirectoryServices.AccountManagement.PrincipalContext('domain')
         $result = $DS.ValidateCredentials($UserName, $Password)
         if ($result) {
-            write-host $UserName
+            write-host Password: $Password - $UserName
         }
     }
 }
+
+Write-Host "Downloading Password List..."
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/adamhancock/Powershell/master/Test%20Credentials/passwordlist.txt" -OutFile passwords.txt
 
 
 foreach($password in Get-Content .\passwords.txt) {
     if($password -match $regex){
                     $users = $null  
-                    write-host Password: $password
+                    
                     Get-ADUser -Filter * -Properties userPrincipalName | foreach { Test-ADCredential -username $_.userPrincipalName -password $password   }
 
     }
