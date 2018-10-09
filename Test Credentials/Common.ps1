@@ -19,7 +19,7 @@ function Test-ADCredential {
         $result = $DS.ValidateCredentials($UserName, $Password)
         if ($result) {
             write-host -ForegroundColor Red Password: $Password - $UserName
-            Write-Output $Password - $UserName | Out-File users.txt -Append
+            Write-Output "$Password - $UserName" | Out-File users.txt -Append
         }
     }
 }
