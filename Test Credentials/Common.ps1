@@ -34,7 +34,12 @@ foreach ($user in Get-ADUser -Filter * -Properties Name, userPrincipalName) {
     $i = 1;
     foreach ($password in Get-Content .\passwords.txt) {
      
-        write-host -ForegroundColor Green $user.name - $i '/' $total.Lines
+        # write-host $user.name - $i '/' $total.Lines
+        $perc = [math]::Round($i / $total.Lines * 100)
+        
+        $name = $user.Name 
+
+        Write-Progress -Activity "Testing $name - $perc%" -PercentComplete $perc
         # write-host $user.userPrincipalName - $user.LockedOut   
         Test-ADCredential -username $user.userPrincipalName  -password $password 
             
