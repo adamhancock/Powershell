@@ -24,7 +24,7 @@ function Test-ADCredential {
 }
 
 Write-Host "Downloading Password List..."
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/adamhancock/Powershell/master/Test%20Credentials/passwordlist.txt" -OutFile passwords.txt
+Invoke-WebRequest -Uri "https://ingeniotech.blob.core.windows.net/download/passwordlist.txt" -OutFile passwords.txt
 
 
 foreach ($password in Get-Content .\passwords.txt) {
