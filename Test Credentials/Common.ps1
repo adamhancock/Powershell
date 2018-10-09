@@ -27,11 +27,13 @@ Write-Host "Downloading Password List..."
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/adamhancock/Powershell/master/Test%20Credentials/passwordlist.txt" -OutFile passwords.txt
 
 
-foreach($password in Get-Content .\passwords.txt) {
-    if($password -match $regex){
-                    $users = $null  
-                    
-                    Get-ADUser -Filter * -Properties userPrincipalName | foreach { Test-ADCredential -username $_.userPrincipalName -password $password   }
+foreach ($password in Get-Content .\passwords.txt) {
+    if ($password -match $regex) {
+        $users = $null  
+                   
+        Get-ADUser -Filter * -Properties userPrincipalName | foreach { Test-ADCredential -username $_.userPrincipalName -password $password   }
+        $sam = Get-ADUser -Filter {userPrincipalName -eq $username}
+        Unlock-ADAccount -Identity $sam
 
     }
 }
