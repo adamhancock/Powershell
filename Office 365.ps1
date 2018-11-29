@@ -50,6 +50,9 @@ get-MailboxFolderPermission -id mailbox:\Calendar -User default -AccessRights re
 Set-Mailbox -Identity "John Smith" -ForwardingAddress "sara@contoso.com" -DeliverToMailboxAndForward $true
 
 #Azure 
+# Prereq
+Install-Module -Name MSOnline	
+
 $msolcred = get-credential
 connect-msolservice -credential $msolcred
 Set-MsolUserPassword -userPrincipalName email@domain.com -NewPassword "YourPassword" -ForceChangePassword $false
