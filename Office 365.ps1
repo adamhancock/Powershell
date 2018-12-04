@@ -72,4 +72,10 @@ Set-Mailbox -Identity email@domain.co.uk -Type “Shared” -ProhibitSendReceive
 Set-Mailbox -Identity <alias> -Type "Regular" -ProhibitSendReceiveQuota 5GB -ProhibitSendQuota 4.75G
 B -IssueWarningQuota 4.5GB
 
+# Timezone to UK in Office365 Exchange
+# All users
+get-mailbox | Set-MailboxRegionalConfiguration -Language 2057 -TimeZone "GMT Standard Time"
+# One user
+Set-MailboxRegionalConfiguration -id <alias> -Language 2057 -TimeZone "GMT Standard Time"
+
 # 2fa enable 
